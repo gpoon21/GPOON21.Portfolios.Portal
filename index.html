@@ -221,6 +221,55 @@
             margin-top: 30px;
         }
 
+        /* Manual redirect button styling */
+        .redirect-button {
+            display: none; /* Hidden by default, shown if redirection fails */
+            background: linear-gradient(90deg, rgba(0, 255, 255, 0.3), rgba(0, 255, 255, 0.7));
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 20px auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .redirect-button:hover {
+            background: linear-gradient(90deg, rgba(0, 255, 255, 0.7), rgba(0, 255, 255, 0.9));
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .redirect-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            pointer-events: none;
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+
+        .redirect-button:hover::before {
+            left: 100%;
+        }
+
+        .redirect-button span {
+            position: relative;
+            z-index: 2;
+        }
+
         /* Additional futuristic elements */
         @keyframes scanline {
             0% { transform: translateY(-100%); }
@@ -296,6 +345,7 @@
         <p>Initializing high-performance .NET interface...</p>
         <p class="tech-specs">Optimizing C# modules | Securing connection | Loading portfolio</p>
         <p class="manual-override">Manual override: <a href="https://gentle-pebble-0ed9f4f10.6.azurestaticapps.net/">ACTIVATE PORTAL</a></p>
+        <button id="manual-redirect" class="redirect-button"><span>Force Redirect</span></button>
         <div class="tech-border"></div>
         <div class="skill-matrix">
             <div class="skill-bar" style="--percent: 95%; --delay: 0.2s;">C#/.NET</div>
@@ -304,10 +354,40 @@
         </div>
     </div>
     <script>
+        // Target URL for redirection
+        const targetUrl = "https://gentle-pebble-0ed9f4f10.6.azurestaticapps.net/";
+
+        // Get the manual redirect button
+        const manualRedirectBtn = document.getElementById('manual-redirect');
+
+        // Add click event listener to the button
+        manualRedirectBtn.addEventListener('click', function() {
+            window.location.href = targetUrl;
+        });
+
         // Set timeout to allow all animations to complete
         setTimeout(function() {
-            window.location.href = "https://gentle-pebble-0ed9f4f10.6.azurestaticapps.net/";
+            try {
+                window.location.href = targetUrl;
+            } catch (e) {
+                console.error("Automatic redirection failed:", e);
+                showManualRedirectButton();
+            }
         }, 4500); // Increased to allow skill bar animations to complete
+
+        // Function to show the manual redirect button if redirection fails
+        function showManualRedirectButton() {
+            manualRedirectBtn.style.display = "block";
+            manualRedirectBtn.style.animation = "fadeIn 0.5s ease-out forwards";
+        }
+
+        // Check if redirection hasn't happened after a certain time
+        setTimeout(function() {
+            // If we're still on this page after 6 seconds, show the manual button
+            if (window.location.href !== targetUrl) {
+                showManualRedirectButton();
+            }
+        }, 6000);
     </script>
 </body>
 </html>
