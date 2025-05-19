@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- Meta refresh removed to allow animation to be visible -->
     <!-- <meta http-equiv="refresh" content="0; url=https://gentle-pebble-0ed9f4f10.6.azurestaticapps.net/"> -->
-    <title>Redirecting to Portfolio</title>
+    <title>Guywanyatum Pooncharoen - Redirecting to Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;400;700&display=swap" rel="stylesheet">
@@ -102,6 +102,26 @@
             animation: fadeIn 1.4s ease-out;
         }
 
+        .subtitle {
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffff;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+            animation: fadeIn 1.3s ease-out;
+        }
+
+        .tech-specs {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(0, 255, 255, 0.8);
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
         a {
             color: #00ffff;
             text-decoration: none;
@@ -172,7 +192,7 @@
         @keyframes loadingPulse {
             0% { width: 0%; opacity: 0.5; }
             50% { opacity: 1; }
-            100% { width: 100%; opacity: 0.5; }
+            100% { width: 100%; opacity: 0.8; }
         }
 
         .loading {
@@ -219,24 +239,75 @@
             animation: scanline 8s linear infinite;
             pointer-events: none;
         }
+
+        /* Skill matrix styling */
+        .skill-matrix {
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeIn 1.8s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes skillBarFill {
+            from { width: 0; }
+            to { width: var(--percent); }
+        }
+
+        .skill-bar {
+            position: relative;
+            height: 4px;
+            background: rgba(0, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            font-size: 0.7rem;
+            color: rgba(0, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 15px;
+            text-align: left;
+        }
+
+        .skill-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: var(--percent);
+            background: linear-gradient(90deg, rgba(0, 255, 255, 0.5), rgba(0, 255, 255, 0.9));
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
+            animation: skillBarFill 1.5s ease-out forwards;
+            animation-delay: var(--delay);
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="tech-border"></div>
-        <h1>INITIATING PORTAL TRANSFER</h1>
+        <h1>GUYWANYATUM POONCHAROEN</h1>
+        <p class="subtitle">SOFTWARE ENGINEER | C# SPECIALIST</p>
         <div class="loading">
             <div class="loading-bar"></div>
         </div>
-        <p>System redirecting to digital portfolio interface...</p>
+        <p>Initializing high-performance .NET interface...</p>
+        <p class="tech-specs">Optimizing C# modules | Securing connection | Loading portfolio</p>
         <p class="manual-override">Manual override: <a href="https://gentle-pebble-0ed9f4f10.6.azurestaticapps.net/">ACTIVATE PORTAL</a></p>
         <div class="tech-border"></div>
+        <div class="skill-matrix">
+            <div class="skill-bar" style="--percent: 95%; --delay: 0.2s;">C#/.NET</div>
+            <div class="skill-bar" style="--percent: 90%; --delay: 0.4s;">Performance</div>
+            <div class="skill-bar" style="--percent: 85%; --delay: 0.6s;">Security</div>
+        </div>
     </div>
     <script>
-        // Set timeout to match the loading bar animation duration
+        // Set timeout to allow all animations to complete
         setTimeout(function() {
             window.location.href = "https://gentle-pebble-0ed9f4f10.6.azurestaticapps.net/";
-        }, 2500);
+        }, 4500); // Increased to allow skill bar animations to complete
     </script>
 </body>
 </html>
