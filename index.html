@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -344,7 +344,7 @@
         </div>
         <p>Initializing high-performance .NET interface...</p>
         <p class="tech-specs">Optimizing C# modules | Securing connection | Loading portfolio</p>
-        <p class="manual-override">Manual override: <a href="https://gentle-pebble-0ed9f4f10.6.azurestaticapps.net/">ACTIVATE PORTAL</a></p>
+        <p class="manual-override">Manual override: <a id="manual-link" href="https://gentle-pebble-0ed9f4f10.6.azurestaticapps.net/">ACTIVATE PORTAL</a></p>
         <button id="manual-redirect" class="redirect-button"><span>Force Redirect</span></button>
         <div class="tech-border"></div>
         <div class="skill-matrix">
@@ -354,21 +354,30 @@
         </div>
     </div>
     <script>
-        // Target URL for redirection
-        const targetUrl = "https://gentle-pebble-0ed9f4f10.6.azurestaticapps.net/";
+        // Base target URL for redirection
+        const baseTargetUrl = "https://gentle-pebble-0ed9f4f10.6.azurestaticapps.net/";
+        
+        // Function to get current URL query parameters and construct the full target URL
+        function getTargetUrlWithQuery() {
+            const currentQuery = window.location.search;
+            return baseTargetUrl + (currentQuery || '');
+        }
+        
+        // Update the manual link with query parameters
+        document.getElementById('manual-link').href = getTargetUrlWithQuery();
 
         // Get the manual redirect button
         const manualRedirectBtn = document.getElementById('manual-redirect');
 
         // Add click event listener to the button
         manualRedirectBtn.addEventListener('click', function() {
-            window.location.href = targetUrl;
+            window.location.href = getTargetUrlWithQuery();
         });
 
         // Set timeout to allow all animations to complete
         setTimeout(function() {
             try {
-                window.location.href = targetUrl;
+                window.location.href = getTargetUrlWithQuery();
             } catch (e) {
                 console.error("Automatic redirection failed:", e);
                 showManualRedirectButton();
@@ -384,6 +393,7 @@
         // Check if redirection hasn't happened after a certain time
         setTimeout(function() {
             // If we're still on this page after 6 seconds, show the manual button
+            const targetUrl = getTargetUrlWithQuery();
             if (window.location.href !== targetUrl) {
                 showManualRedirectButton();
             }
